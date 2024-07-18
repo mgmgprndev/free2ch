@@ -7,7 +7,9 @@ if(!isset($_POST["board-uuid"])){
     exit;
 }
 
-$board = BoardTable::where('boarduuid', $_POST['board-uuid'])->first();
+$board = BoardTable::where('boarduuid', $_POST['board-uuid'])
+    ->where('isdeleted', 0)
+    ->first();
 
 if(!$board){
     echo "板が見つかりません! UUIDが正しいか確認してください。";

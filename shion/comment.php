@@ -9,7 +9,7 @@ if(!isset($_POST["thread-uuid"])){
     exit;
 }
 
-$thread = ThreadTable::where('threaduuid', $_POST["thread-uuid"])->first();
+$thread = ThreadTable::where('threaduuid', $_POST["thread-uuid"])->where('isdeleted', 0)->first();
 
 if(!$thread){
     echo "スレッドが見つかりません。";

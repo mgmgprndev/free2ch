@@ -1,7 +1,7 @@
 <?php
 require('/var/www/util.php');
 
-$board = BoardTable::where('boarduuid', $_GET["uuid"])->first();
+$board = BoardTable::where('boarduuid', $_GET["uuid"])->where('isdeleted', 0)->first();
 
 if(!$board){
     echo "<script>window.location.href='/menu';</script>";
@@ -10,6 +10,7 @@ if(!$board){
 
 $threads = ThreadTable::where('boarduuid', $_GET['uuid'])
     ->orderBy('created_at', 'desc')
+    ->where('isdeleted', 0)
     ->take(100)
     ->get();
 

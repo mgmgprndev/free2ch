@@ -33,4 +33,4 @@ if($uuid == ""){
     <b>UUID:</b> <?php echo $uuid; ?><br>
 </p>
 <input style="width:500px; height:25px;" placeholder="「はい」なら「YES CONFIRM」と入力" oninput="document.getElementById('btn').style.display = this.value == 'YES CONFIRM' ? '' : 'none';">
-<div id="btn" style="padding: 16px; background-color:red;display: none;"><p><a href="/?target=<?php echo $target; ?>&uuid=<?php echo $uuid; ?>">削除を確定</a></p></div>
+<div id="btn" style="padding: 16px; background-color:red;display: none;"><p><a href="/?target=<?php echo $target; ?>&uuid=<?php echo $uuid; ?>&confirm=YES">削除を確定</a></p></div>

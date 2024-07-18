@@ -1,7 +1,7 @@
 <?php
 require('/var/www/util.php');
 
-$boards = BoardTable::all();
+$boards = BoardTable::where('isdeleted', 0)->get();
 
 ?>
 <html>
@@ -11,7 +11,7 @@ $boards = BoardTable::all();
     <body class="p-1 gap-y-5">
         <p class="text-red-500"><b>ふりー</b><br>2ちゃんねる</p>
         <div class="itas" id="boards">
-            <p class="text-red-500">多種多様な板があります (<?php echo BoardTable::count(); ?>)</p>
+            <p class="text-red-500">多種多様な板があります (<?php echo BoardTable::where('isdeleted', 0)->count(); ?>)</p>
             <input class="border border-black focus:border-blue-500 outline-none rounded-md" style="width: 120px;" placeholder="板検索" oninput="search(this.value);"/>
 
             <?php

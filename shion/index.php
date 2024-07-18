@@ -7,7 +7,7 @@ if(!isset($_GET["uuid"])){
     exit; 
 }
 
-$thread = ThreadTable::where('threaduuid', $_GET["uuid"])->first();
+$thread = ThreadTable::where('threaduuid', $_GET["uuid"])->where('isdeleted', 0)->first();
 
 if(!$thread){
     echo "<script>window.location.href='https://free2ch.net/menu';</script>";

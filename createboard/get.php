@@ -1,7 +1,7 @@
 <?php
 require('/var/www/util.php');
 
-$board = BoardTable::where('boarduuid', $_GET["uuid"])->first();
+$board = BoardTable::where('boarduuid', $_GET["uuid"])->where('isdeleted', 0)->first();
 
 header('Content-Type: application/json');
 

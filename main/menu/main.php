@@ -16,15 +16,15 @@ require('/var/www/util.php');
                     <tbody>
                         <tr>
                             <th>板数</th>
-                            <th><?php echo BoardTable::count(); ?></th>
+                            <th><?php echo BoardTable::where('isdeleted', 0)->count(); ?></th>
                         </tr>
                         <tr>
                             <th>スレッド数</th>
-                            <th><?php echo ThreadTable::count(); ?></th>
+                            <th><?php echo ThreadTable::where('isdeleted', 0)->count(); ?></th>
                         </tr>
                         <tr>
                             <th>書き込み数</th>
-                            <th><?php echo CommentTable::count(); ?></th>
+                            <th><?php echo CommentTable::where('isdeleted', 0)->count(); ?></th>
                         </tr>
                     </tbody>
                 </table>

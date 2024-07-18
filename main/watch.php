@@ -14,6 +14,7 @@ if(isset($_GET["live"])){
     require('/var/www/util.php');
 
     $comments = CommentTable::orderBy('created_at', 'desc')
+        ->where('isdeleted', 0)
         ->take(100)
         ->get();
 

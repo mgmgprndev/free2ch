@@ -1,7 +1,7 @@
 <?php
 require('/var/www/util.php');
 
-$boards = BoardTable::orderBy('created_at', 'desc')->take(100)->get();
+$boards = BoardTable::orderBy('created_at', 'desc')->where('isdeleted', 0)->take(100)->get();
 
 ?>
 <html>

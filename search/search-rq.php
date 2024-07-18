@@ -64,7 +64,7 @@ $data = [
 $search_id =  substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 25);
 require_once('/var/www/util.php');
 
-$comments = CommentTable::orderBy('created_at', 'desc')->get();
+$comments = CommentTable::orderBy('created_at', 'desc')->where('isdeleted', 0)->get();
 
 $count = 0;
 

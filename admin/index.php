@@ -2,7 +2,18 @@
 require( "/var/www/util.php");
 require( "/var/www/id.php");
 
+if(!isset($_GET["confirm"])){
+    echo "不正です";
+    exit;
+}
+
+if($_GET["confirm"] != "YES"){
+    echo "不正です。";
+    exit;
+}
+
 $user = VerifyTable::where('userkey', $_SESSION["userkey"])->first();
+
 if(!$user){
     echo "セッションが無効です。";
     exit;
@@ -29,11 +40,24 @@ if($uuid == ""){
 if($target == "board"){
     try {
         $threads = ThreadTable::where("boarduuid", $uuid)->get();
+
         foreach($threads as $t){
-            CommentTable::where('threaduuid', $t->threaduuid)->delete();
-            $t->delete();
+            $comments = CommentTable::where('threaduuid', $t->threaduuid)->get();
+
+            foreach($comments as $comment){
+                $comment->isadmin=0;
+                $comment->isdeleted = 1;
+                $comment->save();
+            }
+
+            $t->isdeleted = 1;
+            $t->save();
         }
-        BoardTable::where('boarduuid', $_GET['uuid'])->delete();   
+
+        $board = BoardTable::where('boarduuid', $_GET['uuid'])->first();
+        $board->isdeleted = 1;
+        $board->save();
+
         echo "板の削除に成功しました。";
     } catch (Exception $e) {
         echo "エラーがー発生しました。" . $e->getMessage();
@@ -42,8 +66,17 @@ if($target == "board"){
 
 if($target == "thread"){
     try {
-        CommentTable::where('threaduuid', $uuid)->delete();
-        ThreadTable::where('threaduuid', $uuid)->delete();
+        $comments = CommentTable::where('threaduuid', $uuid)->get();
+        foreach($comments as $comment){
+            $comment->isadmin=0;
+            $comment->isdeleted = 1;
+            $comment->save();
+        }
+        
+        $thread = ThreadTable::where('threaduuid', $uuid)->first();
+        $thread->isdeleted = 1;
+        $thread->save();
+
         echo "スレッドの削除に成功しました。";
     } catch (Exception $e) {
         echo "エラーがー発生しました。" . $e->getMessage();
@@ -53,10 +86,8 @@ if($target == "thread"){
 if($target == "comment"){
     try {
         $comment = CommentTable::where('commentuuid', $uuid)->first();
-        $comment->useruuid="<span style='color:red;font-weight:bold;'>[deleted]</span>";
-        $comment->nickname="<span style='color:red;font-weight:bold;'>[deleted]</span>";
-        $comment->context="<span style='color:red;font-weight:bold;'>[deleted]</span>";
         $comment->isadmin=0;
+        $comment->isdeleted = 1;
         $comment->save();
         
         echo "コメントの削除に成功しました。";
