@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    @apply min-h-screen h-auto w-screen overflow-x-hidden flex flex-col bg-g-0 text-g-1000 gap-5 text-xl;
+    font-family: "ＭＳ Ｐゴシック", "Osaka";
+}
+
+.bg-brick {
+    @apply bg-[url('/assets/background.jpg')] bg-repeat;
+}
+
+h1 {
+    @apply text-5xl font-bold;
+}
+
+h2 {
+    @apply text-4xl font-bold;
+}
+
+h3 {
+    @apply text-3xl font-bold;
+}
+
+a {
+    @apply underline text-blue-500 duration-300 hover:text-blue-600;
+}
+
+b {
+    @apply font-extrabold;
+}
+
+table {
+    @apply h-fit w-fit border border-g-1000 border-collapse;
+}
+
+table > tbody > tr > th {
+    @apply border border-g-1000 py-2 px-5;
+}
+
+.itas {
+    @apply text-sm;
+}
+
+.itas > p {
+    @apply flex flex-row items-center;
+}
+
+.card {
+    @apply h-auto w-full;
+}
+
+.card > div, iframe {
+    @apply border-double border-4 border-g-1000 h-auto w-full p-5;
+}
+
+comment {
+    @apply hover:bg-stone-400 text-sm md:text-base;
+}
+
+comment > nushi {
+    @apply flex flex-row flex-wrap gap-x-1 md:gap-x-5;
+}
+
+comment > nushi > name {
+    @apply text-green-500;
+}
+
+comment > context {
+    @apply pl-5 pt-2;
+}
+
+.formdiv {
+    @apply bg-stone-200 p-5 w-full md:w-[30rem];
+}
+
+.formdiv > form {
+    @apply flex flex-col gap-1 w-full;
+}
+
+.formdiv > form > input, textarea, select {
+    @apply px-2 outline-none py-1 border border-g-1000 rounded-md placeholder:text-xs w-full;
+}
+
+.formdiv > form > button, input[type="submit"],  input[type="button"] {
+    @apply px-2 py-1 border border-g-1000 rounded-md w-full hover:bg-g-300 cursor-pointer;
+}
+
+.formdiv > form > div > input[type="checkbox"] {
+    @apply h-4 w-4 border border-g-1000 rounded-md cursor-pointer appearance-none checked:bg-blue-500 relative;
+}
+
+.formdiv > form > div > input[type="checkbox"]:checked:after {
+    content: 'L';
+    font-weight: 900;
+    color: white;
+    font-size: 8px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateY(-50%) translateX(-50%) rotate(30deg)  scaleX(-1);
+}
+
+.result_search {
+    @apply flex flex-col h-auto w-full pb-5;
+}
+
+
+.result_search > a {
+    @apply flex flex-col h-fit w-full overflow-y-scroll  hover:bg-stone-300 p-5 text-black;
+    text-decoration: none;
+}
