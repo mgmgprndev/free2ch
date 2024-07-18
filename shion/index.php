@@ -50,6 +50,25 @@ if(!$thread){
 
                     foreach($comments as $comment){
                         $i += 1; 
+                        if($comment->isdeleted == 1){
+                            ?>
+                            <comment>
+                                <nushi>
+                                    <p><?php echo $i; ?></p>
+                                    <p>：</p>
+                                    <name><span style="color:red; font-weight: bold;">[DELETED]</span></name>
+                                    <p>：</p>
+                                    <p><?php echo $comment->created_at; ?></p>
+                                    <p>ID:<span style="color:red; font-weight: bold;">[DELETED]</span></p>
+                                    <!-- CommentUUID:<?php echo $comment->commentuuid; ?>  -->
+                                </nushi>
+                                <context>
+                                    <span style="color:red; font-weight: bold;">[DELETED]</span>
+                                </context>
+                            </comment>
+                            <?php 
+                            continue;
+                        }
                         if($c != ""){
                             $cl = explode(",", $c);
                             $isMatch = false;

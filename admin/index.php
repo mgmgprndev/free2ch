@@ -45,7 +45,6 @@ if($target == "board"){
             $comments = CommentTable::where('threaduuid', $t->threaduuid)->get();
 
             foreach($comments as $comment){
-                $comment->isadmin=0;
                 $comment->isdeleted = 1;
                 $comment->save();
             }
@@ -68,7 +67,6 @@ if($target == "thread"){
     try {
         $comments = CommentTable::where('threaduuid', $uuid)->get();
         foreach($comments as $comment){
-            $comment->isadmin=0;
             $comment->isdeleted = 1;
             $comment->save();
         }
@@ -86,7 +84,6 @@ if($target == "thread"){
 if($target == "comment"){
     try {
         $comment = CommentTable::where('commentuuid', $uuid)->first();
-        $comment->isadmin=0;
         $comment->isdeleted = 1;
         $comment->save();
         
