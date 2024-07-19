@@ -15,3 +15,6 @@ If you use the source code or any part of this project in your own project or se
 
 # Additional Terms
 By using this project, you agree to the terms outlined above and acknowledge that failure to comply with these terms may result in legal consequences.
+
+# Contact
+Questions are always welcome, please email to repo@free2ch.net!
