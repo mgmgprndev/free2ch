@@ -1,0 +1,13 @@
+User-agent: *
+Disallow: /boards/thread.php
+Disallow: /menu/main.php
+Disallow: /menu/mobile.php
+Disallow: /menu/side.php
+Disallow: /adminlogin.php
+Disallow: /watch.php
+Disallow: /confirm.php
+Disallow: /get.php
+Disallow: /go.php
+Disallow: /search-rq.php
+Disallow: /search.php
+Disallow: /comment.php

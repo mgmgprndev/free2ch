@@ -8,10 +8,10 @@ $capsule = new Capsule;
 
 $capsule->addConnection([
     'driver'    => 'mysql',
-    'host'      => '127.0.0.1',
+    'host'      => '172.22.34.116',
     'database'  => '2ch',
-    'username'  => 'dbuser',
-    'password'  => 'dbpassword',
+    'username'  => '2ch',
+    'password'  => 'passwd',
     'charset'   => 'utf8',
     'collation' => 'utf8_unicode_ci',
     'prefix'    => '',
@@ -19,6 +19,12 @@ $capsule->addConnection([
 
 $capsule->setAsGlobal();
 $capsule->bootEloquent();
+
+
+class AdminTable extends Model
+{
+    protected $table = 'admins';
+}
 
 
 class VerifyTable extends Model

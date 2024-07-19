@@ -1,10 +1,12 @@
 <?php
+require('/var/www/util.php');
 
 if($_SERVER['REQUEST_METHOD'] == "POST"){
 ?>
 <html>
     <head>
         <?php require($_SERVER['DOCUMENT_ROOT'] . '/shared/head.php'); ?>
+        <script src="https://r.free2ch.net/hash.js"></script>
     </head>
     <body>
         <h1>このページは管理者ログインページです</h1>
@@ -18,14 +20,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
             exit;
         }
 
-        $users = [
-            'example_user' => 'example_password'
-        ];
-
         $username = isset($_POST['userid']) ? $_POST['userid'] : '';
         $password = isset($_POST['password']) ? $_POST['password'] : '';
 
-        if (isset($users[$username]) && $users[$username] === $password) {
+        $admin = AdminTable::where('userid', $username)->where('passwd', $password)->first();
+
+        if ($admin) {
             newSessionOfAdmin($username);
             echo "ログインしました。";
         }else {
@@ -40,6 +40,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 <html>
     <head>
         <?php require($_SERVER['DOCUMENT_ROOT'] . '/shared/head.php'); ?>
+        <script src="https://r.free2ch.net/hash.js"></script>
     </head>
     <body>
         <h1>このページは管理者ログインページです</h1>
@@ -60,7 +61,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         <div class="formdiv">
             <form action="/adminlogin.php" method="POST">
                 <input type="text" name="userid" placeholder="ID">
-                <input type="password" name="password" placeholder="PASSWORD">
+                <input type="password" oninput="document.getElementById('password').value = sha256(this.value);" placeholder="PASSWORD">
+                <input type="hidden" name="password" id="password" placeholder="PASSWORD">
                 <button>Login</button>
             </form>
 

@@ -32,6 +32,7 @@ if(!$thread){
                     <a target="_blank" href="https://admin.free2ch.net/confirm.php?target=thread&uuid=<?php echo $_GET["uuid"]; ?>">このスレッドを削除</a>
                 <?php } ?>
                 
+                <p><?php echo BoardTable::where('boarduuid', $thread->boarduuid)->first()->boardname; ?></p>
                 <h1 class="text-red-500"><?php echo $thread->threadname; ?></h1>
                 
                 <div class="w-full border-t border-black"></div>
@@ -63,7 +64,7 @@ if(!$thread){
                                     <!-- CommentUUID:<?php echo $comment->commentuuid; ?>  -->
                                 </nushi>
                                 <context>
-                                    <span style="color:red; font-weight: bold;">[DELETED]</span>
+                                    <p><span style="color:red; font-weight: bold;">[DELETED]</span></p>
                                 </context>
                             </comment>
                             <?php 
@@ -83,15 +84,14 @@ if(!$thread){
                         }
                 ?>
 
-                <comment>
+                <comment id='<?php echo $comment->commentuuid; ?>' data-id='<?php echo $i; ?>'>
                     <nushi>
                         <p><?php echo $i; ?></p>
                         <p>：</p>
                         <name class="<?php echo $comment->isadmin == 1 ? "text-red-500" : ""; ?>"><?php echo $comment->nickname; ?></name>
                         <p>：</p>
                         <p><?php echo $comment->created_at; ?></p>
-                        <p>ID:<?php echo $comment->useruuid; ?><?php echo $comment->isadmin == 1 ? "<span class='text-xs text-red-500'>?</span>" : ""; ?></p>
-                        <!-- CommentUUID:<?php echo $comment->commentuuid; ?>  -->
+                        <p>ID:<span style='font-size:13px; <?php echo $comment->isadmin == 1 ? "color:red;" : ""; ?>'><?php echo $comment->useruuid; ?><?php echo $comment->isadmin == 1 ? "<span style='font-size:9px;'>?</span>" : ""; ?><?php echo $comment->useruuid == $comments[0]->useruuid ? "<span style='text-decoration:underline;'>主</span>" : ""; ?></span></p>
                         <?php if ($isAdmin) { ?>
                             <p class="text-xs"><a target="_blank" href="https://admin.free2ch.net/confirm.php?target=comment&uuid=<?php echo $comment->commentuuid; ?>">このコメントを削除</a></p>
                         <?php } ?>
@@ -101,7 +101,7 @@ if(!$thread){
                             $context = $comment->context;
                             $contextlines = explode("\n",$context);
                             foreach($contextlines as $line){
-                                echo $line . "<br>";
+                                echo "<p>" . $line . "</p>";
                             }
                         ?>
                     </context>
@@ -128,6 +128,7 @@ if(!$thread){
             </div>
         </div>
         <script src="https://free2ch.net/nickname.js"></script>
+        <script src="https://shion.free2ch.net/chomusuke.js"></script>
         <script>
             let isSubmitting = false;
             function handleSubmit(event,i) {

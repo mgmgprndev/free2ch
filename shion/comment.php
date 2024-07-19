@@ -63,6 +63,10 @@ $comment->context = $context;
 $comment->browser = getBrowser();
 $comment->save();
 
+
+$thread->last_comment = $comment->created_at;
+$thread->save();
+
 echo "書き込みに成功しました。 <a href='https://shion.free2ch.net?uuid=" . $thread->threaduuid . "'>スレッドに戻る</a>";
 
 ?>

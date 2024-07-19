@@ -1,6 +1,9 @@
 <html>
     <head>
         <?php require($_SERVER['DOCUMENT_ROOT'] . '/shared/head.php'); ?>
+        <meta name="robots" content="index, follow" />
+        <meta name="description" content="Free2chへようこそ。『今日の晩御飯』から『量子力学』までをカバーする匿名掲示板群。" />
+        <link rel="canonical" href="https://free2ch.net/"/>
     </head>
     <body>
         <h1>このサイトはJavaScriptを利用します!</h1>
@@ -9,7 +12,7 @@
     </body>
 
     <script>
-        document.body.innerHTML = `<h1>ふりー２ちゃんねるへようこそ</h1>
+        document.body.innerHTML = `<h1>ふりー２ちゃんねる</h1>
         <div class="mx-auto text-center flex flex-col gap-5">
             <p>『今日の晩御飯』から『量子力学』までをカバーする匿名掲示板群へようこそ</p>
             <h2>[ <a id="join" href="/menu">入る</a> ]</h2>

@@ -9,7 +9,7 @@ if(!$board){
 }
 
 $threads = ThreadTable::where('boarduuid', $_GET['uuid'])
-    ->orderBy('created_at', 'desc')
+    ->orderBy('last_comment', 'desc')
     ->where('isdeleted', 0)
     ->take(100)
     ->get();
@@ -61,7 +61,7 @@ require_once('/var/www/id.php');
                     foreach ($threads as $thread) {
                         $htmlToAdd = "<p>";
                         $htmlToAdd .= "<a target='_blank' href='https://shion.free2ch.net?uuid=" . $thread->threaduuid . "'>";
-                        $htmlToAdd .= $thread->threadname;
+                        $htmlToAdd .= $thread->threadname . "(" . CommentTable::where('threaduuid', $thread->threaduuid)->count() .  ")";
                         $htmlToAdd .= "</a>";
                         $htmlToAdd .= "</p>";
                         echo $htmlToAdd;
