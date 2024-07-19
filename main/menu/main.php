@@ -12,6 +12,7 @@ require('/var/www/util.php');
                 <p>なんでもありな匿名掲示板群です。</p>
 
                 <p>◾️ 利用前に<a target="_blank" href="https://guide.free2ch.net">ガイド</a>を読んでね</p>
+                <p>◾️ ふりー2ちゃんねるはオープンソースです！<a target="_blank" href="https://github.com/mgmgprndev/free2ch/">GitHubを開く</a></p>
 
                 <p>◾️累計</p>
                 <table>
