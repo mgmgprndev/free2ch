@@ -24,12 +24,20 @@ SET time_zone = "+09:00";
 -- "Drop table" means delete the table itself and the datas inside of it.
 -- So please remove it if you are not intent to it.
 DROP TABLE IF EXISTS verifys;
+DROP TABLE IF EXISTS admins;
 DROP TABLE IF EXISTS boards;
 DROP TABLE IF EXISTS threads;
 DROP TABLE IF EXISTS comments;
-DROP TABLE IF EXISTS admins;
 
 --  BELOWS ARE CREATION OF TABLES!
+
+CREATE TABLE IF NOT EXISTS admins (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    userid VARCHAR(255) NOT NULL, 
+    passwd VARCHAR(255) NOT NULL,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
 CREATE TABLE IF NOT EXISTS verifys (
     id INT PRIMARY KEY AUTO_INCREMENT,
