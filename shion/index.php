@@ -98,7 +98,7 @@ if(!$thread){
                             <p class="text-xs"><a target="_blank" href="https://admin.free2ch.net/checkip.php?target=comment&uuid=<?php echo $comment->commentuuid; ?>">書き込んだ人の情報を確認</a></p>
                         <?php } ?>
                     </nushi>
-                    <context>
+                    <context style="word-break: break-all;">
                         <?php
                             $context = $comment->context;
                             $contextlines = explode("\n",$context);
@@ -118,8 +118,8 @@ if(!$thread){
                 <?php if($thread->readonly ==0){ ?>
                 <div class="formdiv">
                     <form action="/comment.php" method="post" onsubmit="return handleSubmit(event, this);">
-                        <input name="nickname" type="text" placeholder="お名前" required/>
-                        <textarea name="comment" placeholder="コメント" required></textarea>
+                        <input name="nickname" type="text" placeholder="お名前 (最大 35文字)" minlength="1" maxlength="35" required/>
+                        <textarea name="comment" placeholder="コメント (最大 2048文字)" minlength="1" maxlength="2048" required></textarea>
                         <input name="thread-uuid" type="hidden" value="<?php echo $_GET["uuid"]; ?>"/>
                         <button>書き込み</button>
                     </form>
