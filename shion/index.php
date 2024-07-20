@@ -30,6 +30,7 @@ if(!$thread){
                 $isAdmin = $user && $user->isadmin == 1;
                 if($isAdmin) { ?>
                     <a target="_blank" href="https://admin.free2ch.net/confirm.php?target=thread&uuid=<?php echo $_GET["uuid"]; ?>">このスレッドを削除</a>
+                    <a target="_blank" href="https://admin.free2ch.net/checkip.php?target=thread&uuid=<?php echo $_GET["uuid"]; ?>">スレッドを作った人の情報を確認</a>
                 <?php } ?>
                 
                 <p><?php echo BoardTable::where('boarduuid', $thread->boarduuid)->first()->boardname; ?></p>
@@ -94,6 +95,7 @@ if(!$thread){
                         <p>ID:<span style='font-size:13px; <?php echo $comment->isadmin == 1 ? "color:red;" : ""; ?>'><?php echo $comment->useruuid; ?><?php echo $comment->isadmin == 1 ? "<span style='font-size:9px;'>?</span>" : ""; ?><?php echo $comment->useruuid == $comments[0]->useruuid ? "<span style='text-decoration:underline;'>主</span>" : ""; ?></span></p>
                         <?php if ($isAdmin) { ?>
                             <p class="text-xs"><a target="_blank" href="https://admin.free2ch.net/confirm.php?target=comment&uuid=<?php echo $comment->commentuuid; ?>">このコメントを削除</a></p>
+                            <p class="text-xs"><a target="_blank" href="https://admin.free2ch.net/checkip.php?target=comment&uuid=<?php echo $comment->commentuuid; ?>">書き込んだ人の情報を確認</a></p>
                         <?php } ?>
                     </nushi>
                     <context>

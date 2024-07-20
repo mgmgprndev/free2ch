@@ -28,6 +28,7 @@ require_once('/var/www/id.php');
                 $user = VerifyTable::where('userkey', $_SESSION["userkey"])->first();
                 if($user && $user->isadmin == 1){?>
                     <a target="_blank" href="https://admin.free2ch.net/confirm.php?target=board&uuid=<?php echo $_GET["uuid"]; ?>">この板を削除</a>
+                    <a target="_blank" href="https://admin.free2ch.net/checkip.php?target=board&uuid=<?php echo $_GET["uuid"]; ?>">板を作った人の情報を確認</a>
                 <?php } ?>
 
                 <h1>「<?php echo $board->boardname; ?>」へようこそ!</h1>
