@@ -4,7 +4,7 @@ if(!isset($_GET["to"]) || $_GET["to"] == ""){
     exit;
 }
 
-$url = base64_decode($_GET["to"]);
+$url = urldecode(base64_decode($_GET["to"]));
 
 ?>
 <style>
