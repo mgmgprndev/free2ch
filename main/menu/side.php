@@ -18,7 +18,7 @@ $boards = BoardTable::where('isdeleted', 0)->get();
         <div class="itas" id="boards">
             <?php
             foreach ($boards as $board) {
-                $htmlToAdd = "<p updated-at=\"" . $board->updated_at .  "\"  thread-count=\"" . ThreadTable::where('boarduuid', $board->boarduuid )->count() . "\" boardname=\"" . $board->boardname . "\">";
+                $htmlToAdd = "<p updated-at=\"" . $board->updated_at .  "\"  thread-count=\"" . ThreadTable::where('boarduuid', $board->boarduuid )->where('isdeleted', 0 )->count() . "\" boardname=\"" . $board->boardname . "\">";
                 $htmlToAdd .= "<a target='_blank' href='/boards/board.php?uuid=" .$board->boarduuid . "'>";
                 $htmlToAdd .= $board->boardname;
                 $htmlToAdd .= "</a>";
