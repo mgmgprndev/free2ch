@@ -9,9 +9,13 @@ Well If I got an time for update, I will sync both :) (no eta, no guarantee)
 `composer require illuminate/database`
 
 # Known Issues
+
 ## Hi! The time using is not my timezone It is UTC! 
 Please make sure your timezone of server is same as your timezone. <br>
-`date` command will give you current time with timezeon. <br>
+`date` command will give you current time with timezone. <br>
 And try update it using `timedatectl set-timezone`. <br>
-Also please also modify the `php.ini` in the /etc/php/{version}/fpm/php.ini (for me, the file here!). <br.
+Also please also modify the `php.ini` in the /etc/php/{version}/fpm/php.ini (for me, the file here!). <br>
 and modify date.timezone. I think it is commented out, so please remove comment out to make it work.
+
+## Hi! frameset & frame is deprecated!
+Well it is true. I just like it, so I use.
