@@ -19,7 +19,11 @@ require_once('/var/www/id.php');
 ?>
 <html>
     <head>
-        <?php require($_SERVER['DOCUMENT_ROOT'] . '/shared/head.php'); ?>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ふりー２ちゃんねる (板:<?php echo $board->boardname; ?>)</title>
+        <link rel="stylesheet" href="/assets/style.css"/>
+        <meta name="robots" content="index, follow" />
+        <meta name="description" content="スレッド数が(<?php echo ThreadTable::where('boarduuid', $_GET["uuid"])->count(); ?>)個の「<?php echo $board->boardname; ?>」へようこそ!" />
     </head>
     <body class="p-5 md:p-16 bg-brick">
         <div class="card bg-green-500">

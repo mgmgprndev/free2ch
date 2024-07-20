@@ -14,12 +14,15 @@ if(!$thread){
     exit;
 }
 
+$board = BoardTable::where('boarduuid', $thread->boarduuid)->first();
 
 ?>
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>ふりー２ちゃんねる</title>
+        <title>ふりー２ちゃんねる (スレッド:<?php echo $thread->threadname; ?>)</title>
+        <meta name="robots" content="index, follow" />
+        <meta name="description" content="「<?php echo $thread->threadname; ?>」というスレッドが「<?php echo $board->boardname; ?>」に立てられましたよ..." />
         <link rel="stylesheet" href="/assets/style.css"/>
     </head>
     <body class="p-5 md:p-16 bg-brick">
@@ -33,7 +36,7 @@ if(!$thread){
                     <a target="_blank" style="width: fit-content;" href="https://admin.free2ch.net/checkip.php?target=thread&uuid=<?php echo $_GET["uuid"]; ?>">スレッドを作った人の情報を確認</a>
                 <?php } ?>
                 
-                <p style="cursor:pointer;" onclick="window.open('https://free2ch.net/boards/board.php?uuid=<?php echo $thread->boarduuid;  ?>','_blank')"><?php echo BoardTable::where('boarduuid', $thread->boarduuid)->first()->boardname; ?></p>
+                <p style="cursor:pointer;" onclick="window.open('https://free2ch.net/boards/board.php?uuid=<?php echo $thread->boarduuid;  ?>','_blank')"><?php echo $board->boardname; ?></p>
                 <h1 class="text-red-500"><?php echo $thread->threadname; ?></h1>
                 
                 <div class="w-full border-t border-black"></div>
