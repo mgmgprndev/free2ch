@@ -29,11 +29,11 @@ if(!$thread){
                 $user = VerifyTable::where('userkey', $_SESSION["userkey"])->first();
                 $isAdmin = $user && $user->isadmin == 1;
                 if($isAdmin) { ?>
-                    <a target="_blank" href="https://admin.free2ch.net/confirm.php?target=thread&uuid=<?php echo $_GET["uuid"]; ?>">このスレッドを削除</a>
-                    <a target="_blank" href="https://admin.free2ch.net/checkip.php?target=thread&uuid=<?php echo $_GET["uuid"]; ?>">スレッドを作った人の情報を確認</a>
+                    <a target="_blank" style="width: fit-content;" href="https://admin.free2ch.net/confirm.php?target=thread&uuid=<?php echo $_GET["uuid"]; ?>">このスレッドを削除</a>
+                    <a target="_blank" style="width: fit-content;" href="https://admin.free2ch.net/checkip.php?target=thread&uuid=<?php echo $_GET["uuid"]; ?>">スレッドを作った人の情報を確認</a>
                 <?php } ?>
                 
-                <p><?php echo BoardTable::where('boarduuid', $thread->boarduuid)->first()->boardname; ?></p>
+                <p style="cursor:pointer;" onclick="window.open('https://free2ch.net/boards/board.php?uuid=<?php echo $thread->boarduuid;  ?>','_blank')"><?php echo BoardTable::where('boarduuid', $thread->boarduuid)->first()->boardname; ?></p>
                 <h1 class="text-red-500"><?php echo $thread->threadname; ?></h1>
                 
                 <div class="w-full border-t border-black"></div>
