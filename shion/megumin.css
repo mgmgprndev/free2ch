@@ -51,7 +51,6 @@
     display: flex;
     flex-direction: column;
     z-index: 50;
-    transition-duration: 500ms;
 }
 
 .image-container > .warning:hover {

@@ -1,5 +1,12 @@
 <?php
 
+
+if(isset($_GET["posted"]) && $_GET["posted"] !="" ){
+    echo urldecode(base64_decode($_GET["posted"]));
+    exit;
+}
+
+
 require('/var/www/util.php');
 
 
@@ -70,3 +77,9 @@ $comment->save();
 echo "スレッドが作成されました。 <a href='https://shion.free2ch.net?uuid=" . $threaduuid . "'>スレッドに行く</a>";
 
 ?>
+
+<script>
+    if(!window.location.href.includes("?posted=")){
+        window.location.href += "?posted=" + btoa(encodeURIComponent(document.body.innerHTML));
+    }
+</script>

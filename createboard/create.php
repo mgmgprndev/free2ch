@@ -1,4 +1,11 @@
 <?php
+
+if(isset($_GET["posted"]) && $_GET["posted"] !="" ){
+    echo urldecode(base64_decode($_GET["posted"]));
+    exit;
+}
+
+
 require('/var/www/util.php');
 require('/var/www/browser.php');
 
@@ -22,3 +29,9 @@ $board->save();
 
 echo "板が作成されました。<a href='https://free2ch.net/boards/board.php?uuid=" . $boarduuid . "'>板に行く</a>";
 ?>
+
+<script>
+    if(!window.location.href.includes("?posted=")){
+        window.location.href += "?posted=" + btoa(encodeURIComponent(document.body.innerHTML));
+    }
+</script>

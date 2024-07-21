@@ -1,5 +1,10 @@
 <?php
 
+if(isset($_GET["posted"]) && $_GET["posted"] !="" ){
+    echo urldecode(base64_decode($_GET["posted"]));
+    exit;
+}
+
 require('/var/www/util.php');
 require('/var/www/browser.php');
 
@@ -67,6 +72,14 @@ $comment->save();
 $thread->last_comment = $comment->created_at;
 $thread->save();
 
+
 echo "書き込みに成功しました。 <a href='https://shion.free2ch.net?uuid=" . $thread->threaduuid . "'>スレッドに戻る</a>";
 
 ?>
+
+
+<script>
+    if(!window.location.href.includes("?posted=")){
+        window.location.href += "?posted=" + btoa(encodeURIComponent(document.body.innerHTML));
+    }
+</script>
