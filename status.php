@@ -218,7 +218,7 @@ function get() {
         var RamUse = data["RAM"]["used"];
         var RamTotal = data["RAM"]["total"];
         var RamPercent = (RamUse / RamTotal) * 100;
-        document.getElementById('ram_usage').innerHTML = mbToGb(RamUse) + "Gb/" + mbToGb(RamTotal) + "Gb (" + fix(RamPercent) + ")%";
+        document.getElementById('ram_usage').innerHTML = mbToGb(RamUse) + "Gb/" + mbToGb(RamTotal) + "Gb (" + fix(RamPercent) + "%)";
         document.getElementById('ram_bar').style.width = RamPercent + "%";
 
         var DiskUse = data["Disk"]["used"];
