@@ -62,15 +62,15 @@ function renderImage(url, el, i){
     }
 
     btn.onclick = function() {
+        url = "https://img.free2ch.net?img=" + this.getAttribute("url");
+
         var img_c = document.createElement("div");
+        img_c.style.display = "none";
         img_c.classList.add("image-container");
         
-        var img = document.createElement("img");
-        img.src = 'https://img.free2ch.net?img=' + this.getAttribute("url");
-        img.style.maxWidth="500px";
-        img.style.maxHeight="500px";
-        img.style.width="auto";
-        img.style.height="auto";
+        var img = document.createElement("div");
+        img.classList.add("img");
+        loadImageBlur(img_c, img, url, this.getAttribute("nsfw")==1);
 
         img_c.appendChild(img);
 
@@ -91,4 +91,44 @@ function renderImage(url, el, i){
     };
 
     el.appendChild(btn);
+}
+
+async function loadImageBlur(pr, el, imagepath, i) {
+    const response = await fetch(imagepath);
+    const imageBlob = await response.blob();
+
+    const imageUrl = URL.createObjectURL(imageBlob);
+
+    if(i){
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        const image = new Image();
+
+        image.src = imageUrl;
+        await new Promise(resolve => image.onload = resolve);
+
+        canvas.width = image.width;
+        canvas.height = image.height;
+        ctx.filter = 'blur(100px)';
+        ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+        
+
+        const blurredBlob = await new Promise(resolve => canvas.toBlob(resolve));
+        const blurredUrl = URL.createObjectURL(blurredBlob);
+
+        pr.addEventListener('mouseenter', () => {
+            el.style.backgroundImage = `url(${imageUrl})`;
+        });
+    
+        pr.addEventListener('mouseleave', () => {
+            el.style.backgroundImage = `url(${blurredUrl})`;
+        });
+
+        el.style.backgroundImage = `url(${blurredUrl})`;
+    }else {
+        el.style.backgroundImage = `url(${imageUrl})`;
+    }
+
+
+    pr.style.display = "";
 }
