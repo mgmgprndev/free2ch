@@ -184,7 +184,7 @@ if(isset($_GET["getdata"]) && $_GET["getdata"] == "1" ){
 
 
         <video class="data_vid" autoplay loop muted>
-          <source src="blue-archive.mp4" type="video/mp4" />
+          <source src="https://img.free2ch.net/?img=aHR0cHMlM0ElMkYlMkZmcmVlMmNoLm5ldCUyRmJsdWUtYXJjaGl2ZS5tcDQ=" type="video/mp4" />
         </video>
 
         <div class="p_er" style="display: none;" id="error">
