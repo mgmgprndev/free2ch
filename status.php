@@ -85,6 +85,14 @@ if(isset($_GET["getdata"]) && $_GET["getdata"] == "1" ){
         gap: 0.25rem;
     }
 
+    .data_vid {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        background-color: whitesmoke;
+        border: 1px gray solid;
+        border-radius: 5px;
+    }
+
     .bar {
         height: 1.25rem;
         width: 100%;
@@ -172,6 +180,12 @@ if(isset($_GET["getdata"]) && $_GET["getdata"] == "1" ){
 
         <p style="text-align: center;">ふりー2ちゃんねるを支えるサーバーさんですよ...</p>
 
+
+
+
+        <video class="data_vid" autoplay loop muted>
+          <source src="blue-archive.mp4" type="video/mp4" />
+        </video>
 
         <div class="p_er" style="display: none;" id="error">
             <div class="error">
