@@ -217,6 +217,23 @@ function get() {
 
         document.getElementById('error').style.display = "none";
 
+        document.querySelectorAll(".inbar").forEach((ib) => {
+            var i = parseInt(ib.style.width.replace("%",""));
+            var color = "lime";
+            if( i > 30 ) {
+                color = "green";
+            }
+            if( i > 50 ) {
+                color = "yellow";
+            }
+            if( i > 70 ) {
+                color = "orange";
+            }
+            if( i > 90 ) {
+                color = "red";
+            }
+            ib.style.backgroundColor = color;
+        });
     }).catch((error) => {
         document.getElementById('error').style.display = "";
         document.getElementById('error_text').innerHTML = error;
