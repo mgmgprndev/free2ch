@@ -4,6 +4,13 @@ link.setAttribute("href", "/megumin.css");
 document.head.appendChild(link);
 
 
+var isR18OK = false;
+
+if(localStorage.getItem("r18ok") && localStorage.getItem("r18ok") == "yes"){
+    isR18OK = true;
+}
+
+
 
 
 const uuid_data = {};
@@ -62,6 +69,16 @@ function renderImage(url, el, i){
     }
 
     btn.onclick = function() {
+
+        if(!isR18OK){
+            isR18OK = confirm("あなたは18歳以上ですか?\nこの画像は投稿者によってR18指定されています。");
+            localStorage.setItem("r18ok", "yes");
+        }
+
+        if(!isR18OK){
+            return;
+        }
+
         url = "https://img.free2ch.net?img=" + this.getAttribute("url");
 
         var img_c = document.createElement("div");
@@ -109,9 +126,22 @@ async function loadImageBlur(pr, el, imagepath, i) {
 
         canvas.width = image.width;
         canvas.height = image.height;
-        ctx.filter = 'blur(100px)';
+
+        ctx.filter = 'blur(64px)';
         ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-        
+    
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const data = imageData.data;
+        for (let i = 0; i < data.length; i += 4) {
+            const rand = Math.random() * 50 - 25;
+            data[i] = data[i] + rand;
+            data[i + 1] = data[i + 1] + rand;
+            data[i + 2] = data[i + 2] + rand;
+        }
+        ctx.putImageData(imageData, 0, 0);
+
+        ctx.filter = 'blur(64px)';
+        ctx.drawImage(canvas, 0, 0, canvas.width, canvas.height);
 
         const blurredBlob = await new Promise(resolve => canvas.toBlob(resolve));
         const blurredUrl = URL.createObjectURL(blurredBlob);

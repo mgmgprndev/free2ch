@@ -211,7 +211,7 @@ function get() {
         return parseFloat(inp.toFixed(1));
     }
 
-    fetch("/status.php?getdata=1&byps=" + [...Array(16)].map(() => (Math.random() * 16 | 0).toString(16)).join('')).then((response) => response.json()).then((data) => {
+    fetch(window.location.href + "?getdata=1&byps=" + [...Array(16)].map(() => (Math.random() * 16 | 0).toString(16)).join('')).then((response) => response.json()).then((data) => {
         document.getElementById('cpu_percent').innerHTML =  fix(data["CPU_Load"]) + "%";
         document.getElementById('cpu_bar').style.width = data["CPU_Load"] + "%";
 
