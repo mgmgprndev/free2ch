@@ -11,7 +11,7 @@
         </script>
     </head>
     <frameset cols="250,*">
-        <frame class="fixed" src="/menu/side.php"></frame>
+        <frame class="fixed" src="/menu/new-side.php"></frame>
         <frame src="/menu/main.php"></frame>
     </frameset>
 </html>
