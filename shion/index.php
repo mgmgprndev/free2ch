@@ -36,7 +36,7 @@ $board = BoardTable::where('boarduuid', $thread->boarduuid)->first();
                     <a target="_blank" style="width: fit-content;" href="https://admin.free2ch.net/checkip.php?target=thread&uuid=<?php echo $_GET["uuid"]; ?>">スレッドを作った人の情報を確認</a>
                 <?php } ?>
                 
-                <p style="cursor:pointer;" onclick="window.open('https://free2ch.net/boards/board.php?uuid=<?php echo $thread->boarduuid;  ?>','_blank')"><?php echo $board->boardname; ?></p>
+                <p style="cursor:pointer;width:fit-content;" onclick="window.open('https://free2ch.net/boards/board.php?uuid=<?php echo $thread->boarduuid;  ?>','_blank')"><?php echo $board->boardname; ?></p>
                 <h1 class="text-red-500"><?php echo $thread->threadname; ?></h1>
                 
                 <div class="w-full border-t border-black"></div>
