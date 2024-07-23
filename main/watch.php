@@ -33,7 +33,7 @@ if(isset($_GET["live"])){
         $board = BoardTable::where('boarduuid',$thread->boarduuid)->first();
 
 
-        if( $board->boarduuid == "2dc5e44ac9e5e0f29aff433dcb8547ef" || $board->boarduuid == "239239a27c6d7a417263ac9061256892" ){
+        if( $board->category == "運営" ){
             continue;
         }
 
