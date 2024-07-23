@@ -55,6 +55,19 @@ $board = BoardTable::where('boarduuid', $thread->boarduuid)->first();
 
                     foreach($comments as $comment){
                         $i += 1; 
+                        if($c != ""){
+                            $cl = explode(",", $c);
+                            $isMatch = false;
+                            foreach($cl as $ll){
+                                if($ll == strval($i) || $ll == $comment->commentuuid ){
+                                    $isMatch = true;
+                                }
+                            }
+                            if(!$isMatch){
+                                continue;
+                            }
+                        }
+                        
                         if($comment->isdeleted == 1){
                             ?>
                             <comment>
@@ -73,18 +86,6 @@ $board = BoardTable::where('boarduuid', $thread->boarduuid)->first();
                             </comment>
                             <?php 
                             continue;
-                        }
-                        if($c != ""){
-                            $cl = explode(",", $c);
-                            $isMatch = false;
-                            foreach($cl as $ll){
-                                if($ll == strval($i) || $ll == $comment->commentuuid ){
-                                    $isMatch = true;
-                                }
-                            }
-                            if(!$isMatch){
-                                continue;
-                            }
                         }
                 ?>
 
