@@ -39,9 +39,9 @@ if(isset($_GET["live"])){
 
         $bname = $board->boardname;
         $tname = $thread->threadname;
-        $comment_at = $tname . "<span class='sm'>@" . $bname . "</span>";
+        $comment_at = cutText($tname) . "<span class='sm'>@" . cutText($bname) . "</span>";
         $comment_text = cutText($comment->context);
-        $comment_by = $comment->nickname . "(" . $comment->useruuid . ")";
+        $comment_by = cutText($comment->nickname) . "(" . $comment->useruuid . ")";
         $href = "https://shion.free2ch.net?uuid=" . $thread->threaduuid . "&c=" . $comment->commentuuid;
 
 
