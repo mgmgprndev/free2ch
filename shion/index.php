@@ -70,7 +70,7 @@ $board = BoardTable::where('boarduuid', $thread->boarduuid)->first();
                         
                         if($comment->isdeleted == 1){
                             ?>
-                            <comment>
+                            <comment id='<?php echo $comment->commentuuid; ?>' data-id='<?php echo $i; ?>'>
                                 <nushi>
                                     <p><?php echo $i; ?></p>
                                     <p>：</p>
